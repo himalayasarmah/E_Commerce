@@ -24,6 +24,5 @@ public class Login{
         Login login = new Login();
         Customer customer = login.customerLogin("himalaya1996@gmail.com", "Himalaya132");
         System.out.println("Welcome " + customer.getName());
-//        System.out.println(login.customerLogin("himalaya1996@gmail.com", "Himalaya132"));
     }
 }
