@@ -103,12 +103,14 @@ public class UserInterface {
 
         Button homeButton = new Button();
         homeButton.setText("E-Commerce");
-//        Image image = new Image("C:\\Users\\ASUS\\IdeaProjects\\E_Commerce\\src\\ecom.png");
-//        ImageView img = new ImageView();
-//        img.setImage(image);
-//        img.setFitWidth(80);
-//        img.setFitHeight(20);
-//        homeButton.setGraphic(img);
+
+        /* --- Commented out because imageview showing error
+        Image img = new Image("C:\\Users\\ASUS\\IdeaProjects\\E_Commerce\\src\\ecom.png")
+        ImageView view = new ImageView(img);
+        view.setFitHeight(20);
+        view.setFitWidth(80);
+        homeButton.setGraphic(view);
+        */
 
         TextField searchBar = new TextField();
         searchBar.setPromptText("Search here");
@@ -153,19 +155,17 @@ public class UserInterface {
         placeOrderButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                int count = Order.placeMultipleOrder(loggedInCustomer, itemsInCart);
                 if(itemsInCart==null){
                     showDialog("Please add Products to the Cart to place Order");
                     return;
                 }
-                if(loggedInCustomer==null){
+                else if(loggedInCustomer==null){
                     showDialog("Please login first to place Order");
                     return;
                 }
 
-//                boolean status = product!=null && loggedInCustomer!=null ? true : false;
-                int count = Order.placeMultipleOrder(loggedInCustomer, itemsInCart);
-
-                if(count!=0){
+                else if(count!=0){
                     showDialog("Order for "+count+" Products placed successfully");
                 }
 
@@ -212,8 +212,7 @@ public class UserInterface {
                     return;
                 }
 
-                boolean status = product!=null && loggedInCustomer!=null ? true : false;
-//                boolean status = Order.placeOrder(loggedInCustomer, product);
+                boolean status = Order.placeOrder(loggedInCustomer, product);
 
                 if(status == true){
                     showDialog("Order placed successfully");
